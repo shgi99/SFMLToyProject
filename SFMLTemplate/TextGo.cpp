@@ -42,12 +42,12 @@ void TextGo::SetString(const std::string& str)
 	text.setString(str);
 }
 
-void TextGo::SetTextSize(int size)
-{
-	text.setCharacterSize(size);
-}
 
 void TextGo::SetTextColor(sf::Color color)
 {
 	text.setFillColor(color);
+}
+void TextGo::SetTextSize(int size)
+{
+	text.setCharacterSize(size);  // sf::Text 객체의 텍스트 크기를 설정
 }

@@ -51,10 +51,17 @@
     <ClCompile Include="TextGo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Obstacle.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ObstaclePool.cpp">
+=======
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="timeBar.cpp">
+>>>>>>> Dev.Park
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,10 +108,17 @@
     <ClInclude Include="TextGo.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Obstacle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ObstaclePool.h">
+=======
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="timeBar.h">
+>>>>>>> Dev.Park
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
