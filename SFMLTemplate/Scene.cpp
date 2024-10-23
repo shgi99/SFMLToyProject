@@ -62,8 +62,9 @@ void Scene::Draw(sf::RenderWindow& window)
 	}
 }
 
-GameObject* Scene::AddGo(GameObject* obj)
+GameObject* Scene::AddGo(GameObject* obj, const std::string& name)
 {
+	obj->SetName(name); // scoretext 찾게 설정
 	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
 	{
 		gameObjects.push_back(obj);
@@ -104,4 +105,9 @@ int Scene::FindGoAll(const std::string& name, std::list<GameObject*>& list)
 	}
 
 	return cnt;
+}
+
+GameObject* Scene::GetGameObject(const std::string& name)
+{
+	return FindGo(name); // FindGo 메서드를 사용하여 이름으로 객체를 찾음
 }
