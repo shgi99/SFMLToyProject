@@ -4,6 +4,7 @@
 #include <list>
 #include <unordered_map>
 #include <algorithm>
+#include <vector>
 
 // SFML Çì´õ
 #include <SFML/Graphics.hpp>

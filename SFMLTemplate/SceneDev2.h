@@ -1,8 +1,10 @@
 #pragma once
 #include "Scene.h"
+#include "ObstaclePool.h"
 class SceneDev2 : public Scene
 {
 protected:
+	ObstaclePool* obstaclePool = nullptr;
 public:
 	SceneDev2();
 	~SceneDev2() = default;

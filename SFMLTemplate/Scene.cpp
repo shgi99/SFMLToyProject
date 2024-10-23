@@ -38,7 +38,7 @@ void Scene::Exit()
 
 void Scene::Update(float dt)
 {
-	for (auto obj : gameObjects)
+	for (auto& obj : gameObjects)
 	{
 		if (!obj->IsActive())
 		{
@@ -51,7 +51,7 @@ void Scene::Update(float dt)
 
 void Scene::Draw(sf::RenderWindow& window)
 {
-	for (auto obj : gameObjects)
+	for (auto& obj : gameObjects)
 	{
 		if (!obj->IsActive())
 		{
@@ -60,15 +60,6 @@ void Scene::Draw(sf::RenderWindow& window)
 
 		obj->Draw(window);
 	}
-}
-
-GameObject* Scene::AddGo(GameObject* obj)
-{
-	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
-	{
-		gameObjects.push_back(obj);
-	}
-	return obj;
 }
 
 void Scene::RemoveGo(GameObject* obj)

@@ -14,7 +14,6 @@ void SceneDev1::Init()
 	obj->SetOrigin(Origins::MC);
 	obj->SetPosition({ 1920 / 2, 1080 / 2 });
 
-	TextGo dev1Text = TextGo("fonts/KOMIKAP_.ttf");
 	GameObject* textObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"));
 	textObj->SetOrigin(Origins::TL);
 	textObj->SetPosition({ 0, 0 });
@@ -48,6 +47,7 @@ void SceneDev1::Update(float dt)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Dev2);
 	}
+	
 }
 
 void SceneDev1::Draw(sf::RenderWindow& window)
