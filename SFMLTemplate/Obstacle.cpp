@@ -24,9 +24,10 @@ void Obstacle::Reset()
 	std::mt19937 g(rd());
 	std::shuffle(lanePositions.begin(), lanePositions.end(), g);
 	float randomX = lanePositions[0];
-
+	float randomY = -(rand() % 200 - 100);
 	// 위치와 원점 설정
-	SetPosition(sf::Vector2f(randomX, -200.0f));
+
+	SetPosition(sf::Vector2f(randomX, randomY));
 	SetOrigin(Origins::MC);
 }
 
@@ -38,14 +39,11 @@ void Obstacle::Update(float dt)
 		return;
 	}
 
-	sf::Vector2f pos = Getposition();
+	sf::Vector2f pos = GetPosition();
 	pos.y += speed * dt;
 	SetPosition(pos);
 
-	if (pos.y > 1000)
-	{
-		SetActive(false);
-	}
+	
 }
 
 void Obstacle::Draw(sf::RenderWindow& window)

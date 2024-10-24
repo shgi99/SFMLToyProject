@@ -40,3 +40,8 @@ void timeBar::Reset()
 	timeBar1.setFillColor(sf::Color::Red); // 색상 초기화
 
 }
+
+void timeBar::AddTime(float time)
+{
+	totalTime += time;
+}

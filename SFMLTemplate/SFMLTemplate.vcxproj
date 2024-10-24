@@ -145,8 +145,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Fuel.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputMgr.cpp" />
+    <ClCompile Include="LaneManager.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstaclePool.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -166,8 +168,10 @@
   <ItemGroup>
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Fuel.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputMgr.h" />
+    <ClInclude Include="LaneManager.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstaclePool.h" />
     <ClInclude Include="Player.h" />

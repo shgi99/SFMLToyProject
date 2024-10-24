@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <vector>
+#include <random>
 
 // SFML Çì´õ
 #include <SFML/Graphics.hpp>
