@@ -27,7 +27,7 @@ public:
 	void SetActive(bool a) { active = a; }
 	virtual void SetScale(const sf::Vector2f& Scale) { scale = Scale; }
 
-	sf::Vector2f Getposition() const { return position; }
+	sf::Vector2f GetPosition() const { return position; }
 	virtual void SetPosition(const sf::Vector2f& pos) { position = pos; }
 	sf::Vector2f GetOrigin() const { return origin; }
 	virtual void SetOrigin(Origins preset);

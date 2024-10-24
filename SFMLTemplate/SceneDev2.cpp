@@ -18,11 +18,12 @@ void SceneDev2::Init()
 	std::cout << "SceneDev2::Init()" << std::endl;
 
 	player = new Player("graphics/TurboPlayer.png", "Player");
+	player->SetScale({ 1.2f, 1.2f });
 	player->SetOrigin(Origins::BC);  // 중심을 원점으로 설정
 	player->SetPosition({ 768 / 2, 1024 / 2 });  // 초기 위치 설정
 	AddGo(player, "player");  // 게임 오브젝트 목록에 추가
 
-	std::vector<float> lanePositions = { 100.0f, 300.0f, 500.0f, 700.0f };
+	std::vector<float> lanePositions = { 150.0f, 300.0f, 450.0f, 600.0f };
 	laneManager = new LaneManager(lanePositions);
 
 	std::vector<std::string> obstacleTextures = { "graphics/TurboObstacle_0.png", "graphics/TurboObstacle_1.png", "graphics/TurboObstacle_2.png", "graphics/TurboObstacle_3.png" };
@@ -123,6 +124,9 @@ void SceneDev2::Exit()
 
 void SceneDev2::Reset()
 {
+
+	FRAMEWORK.SetTimeScale(1.f);
+
 	// 플레이어 초기화
 	player->Reset(); 
 

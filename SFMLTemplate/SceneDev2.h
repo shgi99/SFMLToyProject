@@ -24,7 +24,7 @@ protected:
 	float fuelSpawnTimer = 0.0f; 
 	float obstacleSpawnTimer = 0.0f;
 	const float fuelSpawnInterval = 2.0f;  // 기름 아이템 재생성 간격
-	const float obstacleSpawnInterval = 2.0f;  // 장애물 재생성 간격
+	const float obstacleSpawnInterval = 1.5f;  // 장애물 재생성 간격
 
 	SpriteGo* mapObject = nullptr;
 	int uvOffset;

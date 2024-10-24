@@ -35,18 +35,18 @@ void Player::Update(float dt)
     sf::Vector2f newPosition = GetPosition() + direction; // 현재 위치에 이동 방향 추가
 
     // 화면 경계 내에서 위치 제한
-    if (newPosition.x < 30)
+    if (newPosition.x < 150.f - (getWidth() * 0.5f))
     {
-        newPosition.x = 30; // 왼쪽 경계 제한
+        newPosition.x = 150.f - (getWidth() * 0.5f); // 왼쪽 경계 제한
     }
-    else if (newPosition.x > 825.f - getWidth())
+    else if (newPosition.x > 600 + (getWidth() * 0.5f))
     {
-        newPosition.x = 825.f - getWidth(); // 오른쪽 경계 제한
+        newPosition.x = 600 + (getWidth() * 0.5f); // 오른쪽 경계 제한
     }
 
-    if (newPosition.y < 0)
+    if (newPosition.y < 0 + getHeight())
     {
-        newPosition.y = 100; // 위쪽 경계 제한
+        newPosition.y = 0 + getHeight(); // 위쪽 경계 제한
     }
     else if (newPosition.y > 1120.f - getHeight())
     {
