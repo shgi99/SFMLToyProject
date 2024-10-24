@@ -31,9 +31,7 @@ void timeBar::Draw(sf::RenderWindow& window)
 void timeBar::SetTotalTime(float time)
 {
 	totalTime = time; // 총 시간을 설정
-<<<<<<< HEAD
-}
-=======
+
 }
 
 void timeBar::Reset()
@@ -43,4 +41,9 @@ void timeBar::Reset()
 	timeBar1.setFillColor(sf::Color::Red); // 색상 초기화
 
 }
->>>>>>> origin/test
+
+bool timeBar::IsGameOver() const
+{
+	return elapsedTime >= totalTime;
+}
+

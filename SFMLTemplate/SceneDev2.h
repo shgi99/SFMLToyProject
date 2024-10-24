@@ -11,11 +11,14 @@ protected:
 	Player* player = nullptr;
 	timeBar timeBar;
 	bool isPause = false;
+	bool isGameOver;
 
 	int score = 0;             // 점수 저장 변수
 	float scoreTimer = 0.0f;   // 점수 업데이트 타이머
 	const float scoreInterval = 0.1f; // 점수 업데이트 간격 (초)
 
+	SpriteGo* mapObject = nullptr;
+	int uvOffset;
 public:
 	SceneDev2();
 	~SceneDev2() = default;
