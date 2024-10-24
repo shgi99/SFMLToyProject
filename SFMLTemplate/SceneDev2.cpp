@@ -23,7 +23,7 @@ void SceneDev2::Init()
 	for (Obstacle* obstacle : obstaclePool->GetRandomObstacles(3))
 	{
 		obstacle->SetActive(true);
-		AddGo(obstacle);
+		AddGo(obstacle, "obstacle");
 		std::cout << "Obstacle added at position: " << obstacle->Getposition().x << ", " << obstacle->Getposition().y << std::endl;
 	}
 	GameObject* obj = AddGo(new SpriteGo("graphics/TurboMap.png"),"TurboMap");
@@ -106,7 +106,7 @@ void SceneDev2::Update(float dt)
 		for (Obstacle* obstacle : obstaclePool->GetRandomObstacles(numObstacles))
 		{
 			obstacle->SetActive(true);
-			AddGo(obstacle);
+			AddGo(obstacle, "obstacle");
 			std::cout << "Obstacle added at position: " << obstacle->Getposition().x << ", " << obstacle->Getposition().y << std::endl;
 		}
 		timer = 0.0f;
@@ -125,8 +125,8 @@ void SceneDev2::Update(float dt)
 
 void SceneDev2::Draw(sf::RenderWindow& window)
 {
-	obstaclePool->Draw(window);
 	Scene::Draw(window);
+	obstaclePool->Draw(window);
 	player.Draw(window);
 	timeBar.Draw(window);
 

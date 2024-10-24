@@ -62,23 +62,11 @@ void Scene::Draw(sf::RenderWindow& window)
 	}
 }
 
-<<<<<<< HEAD
-=======
-GameObject* Scene::AddGo(GameObject* obj, const std::string& name)
-{
-	obj->SetName(name); // scoretext 찾게 설정
-	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
-	{
-		gameObjects.push_back(obj);
-	}
-	return obj;
-}
-
->>>>>>> Dev.Park
 void Scene::RemoveGo(GameObject* obj)
 {
 	gameObjects.remove(obj);
 }
+
 
 GameObject* Scene::FindGo(const std::string& name)
 {

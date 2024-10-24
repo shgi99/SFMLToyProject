@@ -168,12 +168,9 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputMgr.h" />
-<<<<<<< HEAD
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstaclePool.h" />
-=======
     <ClInclude Include="Player.h" />
->>>>>>> Dev.Park
     <ClInclude Include="ResourceMgr.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDev1.h" />

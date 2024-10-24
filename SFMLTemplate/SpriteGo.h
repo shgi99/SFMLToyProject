@@ -6,8 +6,6 @@ protected:
 	sf::Sprite sprite;
 	std::string textureId;
 public:
-
-
 	SpriteGo(const std::string& texId, const std::string& name = "");
 	~SpriteGo() = default;
 

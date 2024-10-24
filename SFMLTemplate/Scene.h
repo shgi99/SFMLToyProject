@@ -27,8 +27,9 @@ public:
 	virtual GameObject* GetGameObject(const std::string& name);
 };
 template<typename T>
-inline T* Scene::AddGo(T* obj)
+inline T* Scene::AddGo(T* obj, const std::string& name)
 {
+	obj->SetName(name);
 	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
 	{
 		gameObjects.push_back(obj);

@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Obstacle.h"
 
-Obstacle::Obstacle()
-{
-}
 
 Obstacle::Obstacle(const std::string& texId, const std::vector<float>& lanes, float spd, const std::string& name)
 	: SpriteGo(texId ,name), speed(spd), lanePositions(lanes)
