@@ -17,12 +17,8 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow& window);
 
-<<<<<<< HEAD
 	template<typename T>
-	inline T* AddGo(T* obj);
-=======
-	virtual GameObject* AddGo(GameObject* obj, const std::string& name); // 추가 매개 변수 받기위한 string name 추가
->>>>>>> Dev.Park
+	inline T* AddGo(T* obj, const std::string& name);
 	virtual void RemoveGo(GameObject* obj);
 
 	virtual GameObject* FindGo(const std::string& name);

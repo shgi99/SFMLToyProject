@@ -1,18 +1,12 @@
 #pragma once
 #include "Scene.h"
-<<<<<<< HEAD
+#include "Player.h"
+#include "timeBar.h"
 #include "ObstaclePool.h"
 class SceneDev2 : public Scene
 {
 protected:
 	ObstaclePool* obstaclePool = nullptr;
-=======
-#include "Player.h"
-#include "timeBar.h"
-
-class SceneDev2 : public Scene
-{
-protected:
 	Player player;
 	timeBar timeBar;
 	bool isPause;
@@ -21,7 +15,6 @@ protected:
 	float scoreTimer = 0.0f;   // 점수 업데이트 타이머
 	const float scoreInterval = 0.1f; // 점수 업데이트 간격 (초)
 
->>>>>>> Dev.Park
 public:
 	SceneDev2();
 	~SceneDev2() = default;

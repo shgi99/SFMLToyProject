@@ -15,11 +15,7 @@ void SceneDev1::Init()
 	obj->SetOrigin(Origins::MC);
 	obj->SetPosition({ 900 / 2, 1000 / 2 });
 
-<<<<<<< HEAD
-	GameObject* textObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"));
-=======
 	GameObject* textObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"),"Maincommend");
->>>>>>> Dev.Park
 	textObj->SetOrigin(Origins::TL);
 	textObj->SetPosition({ 0, 0 });
 	textObj->SetString("dev1");
