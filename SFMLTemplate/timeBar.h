@@ -19,5 +19,7 @@ public:
 	void SetTotalTime(float time); // 총 시간을 설정하는 메서드
 	void Reset();
 	void AddTime(float time);
+
+	bool IsGameOver() const;
 };
 

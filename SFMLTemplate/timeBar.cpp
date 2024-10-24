@@ -45,3 +45,8 @@ void timeBar::AddTime(float time)
 {
 	totalTime += time;
 }
+bool timeBar::IsGameOver() const
+{
+	return elapsedTime >= totalTime;
+}
+

@@ -16,6 +16,7 @@ protected:
 	timeBar timeBar;
 
 	bool isPause = false;
+	bool isGameOver;
 
 	int score = 0;             // 점수 저장 변수
 	float scoreTimer = 0.0f;   // 점수 업데이트 타이머
@@ -24,6 +25,9 @@ protected:
 	float obstacleSpawnTimer = 0.0f;
 	const float fuelSpawnInterval = 2.0f;  // 기름 아이템 재생성 간격
 	const float obstacleSpawnInterval = 2.0f;  // 장애물 재생성 간격
+
+	SpriteGo* mapObject = nullptr;
+	int uvOffset;
 public:
 	SceneDev2();
 	~SceneDev2() = default;

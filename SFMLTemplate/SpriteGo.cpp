@@ -29,6 +29,12 @@ void SpriteGo::SetPosition(const sf::Vector2f& pos)
 	sprite.setPosition(pos);
 }
 
+void SpriteGo::SetScale(const sf::Vector2f& Scale)
+{
+    GameObject::SetScale(Scale);
+    sprite.setScale(Scale);
+}
+
 void SpriteGo::Draw(sf::RenderWindow& window)
 {
     if (sprite.getTexture() != nullptr) // 텍스처가 설정된 경우에만 그리기
@@ -51,4 +57,14 @@ void SpriteGo::SetOrigin(const sf::Vector2f& newOrigin)
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	sprite.setOrigin(origin);
+}
+
+float SpriteGo::getWidth() const
+{
+    return sprite.getGlobalBounds().width;
+}
+
+float SpriteGo::getHeight() const
+{
+    return sprite.getGlobalBounds().height;
 }

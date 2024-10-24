@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 
+
 Player::Player(const std::string& texId, const std::string& name)
     : SpriteGo(texId, name), speed(500.f)
 {
@@ -30,10 +31,38 @@ void Player::Update(float dt)
     {
         sprite.move(0, speed * dt); // 아래로 이동 (Y축 증가)
     }
+    // 새로운 위치 계산
+    sf::Vector2f newPosition = GetPosition() + direction; // 현재 위치에 이동 방향 추가
+
+    // 화면 경계 내에서 위치 제한
+    if (newPosition.x < 30)
+    {
+        newPosition.x = 30; // 왼쪽 경계 제한
+    }
+    else if (newPosition.x > 825.f - getWidth())
+    {
+        newPosition.x = 825.f - getWidth(); // 오른쪽 경계 제한
+    }
+
+    if (newPosition.y < 0)
+    {
+        newPosition.y = 100; // 위쪽 경계 제한
+    }
+    else if (newPosition.y > 1120.f - getHeight())
+    {
+        newPosition.y = 1120.f - getHeight(); // 아래쪽 경계 제한
+    }
+
+    SetPosition(newPosition); // 제한된 위치로 설정
 }
 
 void Player::Draw(sf::RenderWindow& window)
 {
     SpriteGo::Draw(window);
     window.draw(sprite); // 플레이어 그리기
+}
+
+sf::Vector2f Player::GetPosition() const
+{
+    return sprite.getPosition();
 }

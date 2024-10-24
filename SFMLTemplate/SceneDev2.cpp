@@ -9,7 +9,7 @@
 #include "Fuel.h"
 #include "LaneManager.h"
 
-SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
+SceneDev2::SceneDev2() : Scene(SceneIds::Dev2),uvOffset(0)
 {
 }
 
@@ -19,7 +19,7 @@ void SceneDev2::Init()
 
 	player = new Player("graphics/TurboPlayer.png", "Player");
 	player->SetOrigin(Origins::BC);  // 중심을 원점으로 설정
-	player->SetPosition({ 450, 800 });  // 초기 위치 설정
+	player->SetPosition({ 768 / 2, 1024 / 2 });  // 초기 위치 설정
 	AddGo(player, "player");  // 게임 오브젝트 목록에 추가
 
 	std::vector<float> lanePositions = { 100.0f, 300.0f, 500.0f, 700.0f };
@@ -45,11 +45,18 @@ void SceneDev2::Init()
 		obstacle->SetActive(true);
 		AddGo(obstacle, "obstacle");
 	}
-	GameObject* obj = AddGo(new SpriteGo("graphics/TurboMap.png"),"TurboMap");
-	obj->SetOrigin(Origins::MC);
-	obj->SetPosition({ 900 / 2, 1000 / 2 });
-
-
+	//GameObject* mapObject = AddGo(new SpriteGo("graphics/TurboMap.png"),"TurboMap");
+	//mapObject->SetOrigin(Origins::MC);
+	//mapObject->SetPosition({ 768 / 2, 1024 / 2 });
+	//mapObject->SetScale({ 0.7f,1.0f });
+	//AddGo(mapObject, "TurboMap");
+	mapObject = dynamic_cast<SpriteGo*>(AddGo(new SpriteGo("graphics/TurboMap.png"), "TurboMap")); // mapObject 초기화
+	if (mapObject)
+	{
+		mapObject->SetOrigin(Origins::MC);
+		mapObject->SetPosition({ 768 / 2, 1024 / 2 });
+		mapObject->SetScale({ 0.7f, 2.0f });
+	}
 
 	GameObject* scoreTextObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"), "ScoreText");
 	scoreTextObj->SetOrigin(Origins::TL);
@@ -59,10 +66,18 @@ void SceneDev2::Init()
 
 	GameObject* PauseTextObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"), "PauseText");
 	PauseTextObj->SetOrigin(Origins::MC);
-	PauseTextObj->SetPosition({ 900 / 2, 1000 / 2 }); // 점수 위치 설정
+	PauseTextObj->SetPosition({ 768 / 2, 1024 / 2 }); // 점수 위치 설정
 	PauseTextObj->SetTextSize(50); // 텍스트 크기 설정
 	PauseTextObj->SetString("Press Enter to Start!!"); // 초기 점수 설정
-	PauseTextObj->SetActive(true); // 초기 상태에서 비활성화
+	PauseTextObj->SetActive(false); // 초기 상태에서 비활성화
+
+
+	GameObject* gameOverTextObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"), "gameOverText");
+	gameOverTextObj->SetOrigin(Origins::MC);
+	gameOverTextObj->SetPosition({ 768 / 2, 1024 / 2 }); // 점수 위치 설정
+	gameOverTextObj->SetTextSize(50); // 텍스트 크기 설정
+	gameOverTextObj->SetString("Game Over..."); // 초기 점수 설정
+	gameOverTextObj->SetActive(false); // 초기 상태에서 비활성화
 
 	Scene::Init();
 }
@@ -129,10 +144,12 @@ void SceneDev2::Reset()
 			obj->SetActive(false);
 		}
 	}
+	isGameOver = false;
 }
 
 void SceneDev2::Update(float dt)
 {
+<<<<<<< HEAD
 	if (isPause)
 	{
 		if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
@@ -150,6 +167,86 @@ void SceneDev2::Update(float dt)
 	}
 
 	Scene::Update(dt);
+=======
+	if (timeBar.IsGameOver())
+	{
+		isGameOver = true; // 게임 오버 상태로 설정
+		isPause = true; // 게임을 멈춤
+
+		// ESC 키를 누르면 메인 메뉴로 돌아가기
+		if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+		{
+			SCENE_MGR.ChangeScene(SceneIds::Dev1);  // 메인 메뉴로 돌아가기
+			Reset();  // 게임 상태 초기화
+			return; // 추가적인 업데이트를 하지 않음
+		}
+	}
+
+    if (isPause)
+    {
+		// ESC 키를 누르면 메인 메뉴로 돌아가기
+		if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+		{
+			SCENE_MGR.ChangeScene(SceneIds::Dev1);  // 메인 메뉴로 돌아가기
+			Reset();  // 게임 상태 초기화
+			return; // 추가적인 업데이트를 하지 않음
+		}
+
+        // 스페이스바를 누르면 게임을 다시 시작
+        if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+        {
+            isPause = false;  // 게임 재개
+        }
+
+		return;
+	
+    }
+
+	// UV 오프셋 업데이트
+	uvOffset -= 1500 * dt;  // UV 이동 속도 조절
+
+	if (mapObject && mapObject->GetTexture())
+	{
+		auto textureSize = mapObject->GetTexture()->getSize(); // 텍스처 크기 가져오기
+		int height = textureSize.y;
+
+		// 리셋 주기 설정 (2초)
+		float resetInterval = 0.2f; // 리셋 주기 (초)
+		static float elapsedTime = 0.0f; // 경과 시간
+
+		elapsedTime += dt; // 프레임마다 시간 추가
+
+		if (isGameOver)  // 게임 오버 상태 체크
+		{
+			// 엔터 키를 누르면 메인 메뉴로 돌아가기
+			if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+			{
+				SCENE_MGR.ChangeScene(SceneIds::Dev1);  // 메인 메뉴로 돌아가기
+				Reset();  // 게임 상태 초기화
+			}
+			return; // 게임 오버 상태에서는 다른 업데이트를 하지 않음
+		}
+
+		// UV 오프셋이 텍스처 높이보다 작아지면 위치를 리셋
+		if (uvOffset <= -height || elapsedTime >= resetInterval)
+		{
+			uvOffset = 0; // 오프셋을 0으로 리셋
+			elapsedTime = 0.0f; // 경과 시간 초기화
+
+			// 맵의 Y 위치를 동적으로 조정
+			float newYPosition = 1024 / 2; // 기본 위치 (조정 필요)
+			mapObject->SetPosition({ static_cast<float>(768) / 2, newYPosition });
+		}
+
+		// 텍스처에 UV 애니메이션 적용
+		mapObject->SetTextureRect(sf::IntRect(0, static_cast<int>(uvOffset), mapObject->GetTexture()->getSize().x, mapObject->GetTexture()->getSize().y));
+		player->Update(dt);
+
+
+	}
+
+    Scene::Update(dt);
+>>>>>>> origin/Dev.Park
 
 	scoreTimer += dt;
 
@@ -164,6 +261,7 @@ void SceneDev2::Update(float dt)
 	std::list<GameObject*> obstacleList;
 	int obstacleCount = FindGoAll("obstacle", obstacleList);
 
+<<<<<<< HEAD
 	// 장애물과 플레이어 충돌 여부 확인
 	for (GameObject* obj : obstacleList)
 	{
@@ -178,6 +276,23 @@ void SceneDev2::Update(float dt)
 			}
 		}
 	}
+=======
+     // 장애물과 플레이어 충돌 여부 확인
+    for (GameObject* obj : obstacleList)
+    {
+        Obstacle* obstacle = dynamic_cast<Obstacle*>(obj);
+        if (obstacle && obstacle->IsActive())  // 활성화된 장애물만 체크
+        {
+            sf::FloatRect obstacleBounds = obstacle->GetGlobalBound();
+            if (playerBounds.intersects(obstacleBounds))  // 충돌 발생 시
+            {
+                isPause = true;  // 게임을 멈춤
+				isGameOver = true;
+                break;  // 충돌 발생 시 더 이상 확인하지 않음
+            }
+        }
+    }
+>>>>>>> origin/Dev.Park
 
 	// 장애물이 화면 밖으로 나가면 비활성화하고 차선 해제
 	for (GameObject* obj : obstacleList)
@@ -194,6 +309,7 @@ void SceneDev2::Update(float dt)
 		}
 	}
 
+<<<<<<< HEAD
 	// 장애물 생성
 	obstacleSpawnTimer += dt;
 	if (obstacleSpawnTimer > obstacleSpawnInterval)
@@ -263,6 +379,17 @@ void SceneDev2::Update(float dt)
 	timeBar.Update(dt);
 	obstaclePool->Update(dt);
 	fuelItem->Update(dt);
+=======
+    // 엔터 키를 누르면 일시정지
+    if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+    {
+        isPause = true;
+    }
+
+    player->Update(dt);
+    timeBar.Update(dt);	
+    obstaclePool->Update(dt);
+>>>>>>> origin/Dev.Park
 }
 
 
@@ -280,12 +407,22 @@ void SceneDev2::Draw(sf::RenderWindow& window)
 		scoreTextObj->SetString("Score: " + std::to_string(score)); // 점수 업데이트
 	}
 	
-	if (isPause)
+	if (isPause && !isGameOver)
 	{
-		GameObject* pauseTextObj = dynamic_cast<TextGo*>(GetGameObject("PauseText"));
-		if (pauseTextObj)
+		GameObject* PauseTextObj = dynamic_cast<TextGo*>(GetGameObject("PauseText"));
+		if (PauseTextObj)
 		{
-			pauseTextObj->Draw(window); // PauseText 그리기
+			PauseTextObj->Draw(window); // PauseText 그리기
+		}
+	}
+
+	// 게임 오버 텍스트 그리기
+	if (isGameOver)
+	{
+		GameObject* gameOverTextObj = dynamic_cast<TextGo*>(GetGameObject("gameOverText"));
+		if (gameOverTextObj)
+		{
+			gameOverTextObj->Draw(window); // Game Over 메시지 그리기
 		}
 	}
 }
