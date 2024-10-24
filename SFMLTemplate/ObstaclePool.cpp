@@ -40,12 +40,10 @@ std::vector<Obstacle*> ObstaclePool::GetRandomObstacles(int count)
         Obstacle* obstacle = GetInactiveObstacle();
         if (obstacle)  // 비활성화된 장애물을 찾은 경우
         {
-            std::cout << "Obstacle found and activated" << std::endl;
             activeObstacles.push_back(obstacle);
         }
         else
         {
-            std::cout << "No inactive obstacle found" << std::endl;
         }
     }
 

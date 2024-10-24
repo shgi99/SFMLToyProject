@@ -5,7 +5,7 @@
 Obstacle::Obstacle(const std::string& texId, const std::vector<float>& lanes, float spd, const std::string& name)
 	: SpriteGo(texId ,name), speed(spd), lanePositions(lanes)
 {
-	Reset();
+	
 }
 
 Obstacle::~Obstacle()
@@ -26,7 +26,7 @@ void Obstacle::Reset()
 	float randomX = lanePositions[0];
 
 	// 위치와 원점 설정
-	SetPosition(sf::Vector2f(randomX, -50.0f));
+	SetPosition(sf::Vector2f(randomX, -200.0f));
 	SetOrigin(Origins::MC);
 }
 
@@ -52,7 +52,6 @@ void Obstacle::Draw(sf::RenderWindow& window)
 {
 	if (IsActive())    
 	{
-		std::cout << "Obstacle Size: " << sprite.getGlobalBounds().width << "x" << sprite.getGlobalBounds().height << std::endl;
 		SpriteGo::Draw(window);
 	}
 }

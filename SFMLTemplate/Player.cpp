@@ -1,18 +1,15 @@
 #include "stdafx.h"
 #include "Player.h"
 
-
-Player::Player()
+Player::Player(const std::string& texId, const std::string& name)
+    : SpriteGo(texId, name), speed(500.f)
 {
-    // 텍스처 로드
-    if (!texture.loadFromFile("graphics/TurboPlayer.png"))
-    {
-        // 에러 처리
-    }
+}
 
-    sprite.setTexture(texture);
-    sprite.setPosition(900 / 2, (1000 / 2) + 270); // 초기 위치 설정
-    speed = 500.0f; // 이동 속도 설정
+void Player::Reset()
+{
+    SpriteGo::Reset();
+    SetPosition({ 450, 800 });
 }
 
 void Player::Update(float dt)
@@ -37,5 +34,6 @@ void Player::Update(float dt)
 
 void Player::Draw(sf::RenderWindow& window)
 {
+    SpriteGo::Draw(window);
     window.draw(sprite); // 플레이어 그리기
 }

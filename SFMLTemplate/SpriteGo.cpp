@@ -12,7 +12,6 @@ void SpriteGo::Reset()
     sf::Texture& texture = TEXTURE_MGR.Get(textureId);
     if (texture.getSize().x == 0 || texture.getSize().y == 0)
     {
-        std::cout << "Texture not found or invalid size: " << textureId << std::endl;
         return; // 유효하지 않은 텍스처인 경우 함수 종료
     }
 
@@ -21,7 +20,6 @@ void SpriteGo::Reset()
 
     // 스프라이트 크기 확인
     sf::FloatRect bounds = sprite.getGlobalBounds();
-    std::cout << "Sprite size after setting texture: " << bounds.width << "x" << bounds.height << std::endl;
 }
 
 
@@ -36,11 +34,9 @@ void SpriteGo::Draw(sf::RenderWindow& window)
     if (sprite.getTexture() != nullptr) // 텍스처가 설정된 경우에만 그리기
     {
         window.draw(sprite);
-        std::cout << "Drawing sprite at position: " << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
     }
     else
     {
-        std::cout << "Sprite has no texture" << std::endl;
     }
 }
 
