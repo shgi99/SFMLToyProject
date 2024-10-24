@@ -67,6 +67,7 @@ void Scene::RemoveGo(GameObject* obj)
 	gameObjects.remove(obj);
 }
 
+
 GameObject* Scene::FindGo(const std::string& name)
 {
 	for (auto obj : gameObjects)
@@ -96,3 +97,9 @@ int Scene::FindGoAll(const std::string& name, std::list<GameObject*>& list)
 
 	return cnt;
 }
+
+GameObject* Scene::GetGameObject(const std::string& name)
+{
+	return FindGo(name); // FindGo 메서드를 사용하여 이름으로 객체를 찾음
+}
+

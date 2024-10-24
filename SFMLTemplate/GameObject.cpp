@@ -3,9 +3,12 @@
 
 
 
+
 GameObject::GameObject(const std::string& name) : name(name)
 {
 }
+
+
 
 void GameObject::SetOrigin(Origins preset)
 {

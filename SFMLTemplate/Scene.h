@@ -18,15 +18,19 @@ public:
 	virtual void Draw(sf::RenderWindow& window);
 
 	template<typename T>
-	inline T* AddGo(T* obj);
+	inline T* AddGo(T* obj, const std::string& name);
 	virtual void RemoveGo(GameObject* obj);
 
 	virtual GameObject* FindGo(const std::string& name);
 	virtual int FindGoAll(const std::string& name, std::list <GameObject*>& list);
+	// 추가: 이름으로 GameObject 찾기
+	virtual GameObject* GetGameObject(const std::string& name);
+
 };
 template<typename T>
-inline T* Scene::AddGo(T* obj)
+inline T* Scene::AddGo(T* obj, const std::string& name)
 {
+	obj->SetName(name);
 	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
 	{
 		gameObjects.push_back(obj);
