@@ -147,12 +147,9 @@
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputMgr.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstaclePool.cpp" />
-=======
     <ClCompile Include="Player.cpp" />
->>>>>>> Dev.Park
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
     <ClCompile Include="SceneDev2.cpp" />
