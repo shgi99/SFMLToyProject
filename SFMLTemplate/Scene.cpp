@@ -102,3 +102,4 @@ GameObject* Scene::GetGameObject(const std::string& name)
 {
 	return FindGo(name); // FindGo 메서드를 사용하여 이름으로 객체를 찾음
 }
+

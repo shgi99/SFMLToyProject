@@ -31,4 +31,16 @@ void timeBar::Draw(sf::RenderWindow& window)
 void timeBar::SetTotalTime(float time)
 {
 	totalTime = time; // 총 시간을 설정
+<<<<<<< HEAD
 }
+=======
+}
+
+void timeBar::Reset()
+{
+	elapsedTime = 0.0f; // 경과 시간 초기화
+	timeBar1.setSize(sf::Vector2f(timeBarWidth, timeBarHeight)); // 타임바 크기 초기화
+	timeBar1.setFillColor(sf::Color::Red); // 색상 초기화
+
+}
+>>>>>>> origin/test

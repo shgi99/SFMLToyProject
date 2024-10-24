@@ -17,6 +17,7 @@ public:
     std::vector<Obstacle*> GetRandomObstacles(int count);
     void Update(float dt);
     void Draw(sf::RenderWindow& window);
+    void Reset(); // 리셋 추가
     static int GetRandomInt(int min, int max);
 };
 

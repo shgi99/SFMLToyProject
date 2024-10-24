@@ -19,6 +19,14 @@ void SceneDev1::Init()
 	textObj->SetOrigin(Origins::TL);
 	textObj->SetPosition({ 0, 0 });
 	textObj->SetString("dev1");
+
+	GameObject* StartTextObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"), "StartText");
+	StartTextObj->SetOrigin(Origins::MC);
+	StartTextObj->SetPosition({ 900 / 2, 1000 / 2 }); // 점수 위치 설정
+	StartTextObj->SetTextSize(50); // 텍스트 크기 설정
+	StartTextObj->SetString("Press Space Button to Start!!"); // 초기 점수 설정
+
+
 	Scene::Init();
 }
 

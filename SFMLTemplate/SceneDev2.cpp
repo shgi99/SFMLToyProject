@@ -15,15 +15,19 @@ void SceneDev2::Init()
 {
 	std::cout << "SceneDev2::Init()" << std::endl;
 
-    player = new Player("graphics/TurboPlayer.png");  // 플레이어의 텍스처 파일 경로
-    player->SetOrigin(Origins::BC);  // 중심을 원점으로 설정
-    player->SetPosition({ 450, 800 });  // 초기 위치 설정
-    AddGo(player, "player");  // 게임 오브젝트 목록에 추가
-
-
+	player = new Player("graphics/TurboPlayer.png", "Player");
+	player->SetOrigin(Origins::BC);  // 중심을 원점으로 설정
+	player->SetPosition({ 450, 800 });  // 초기 위치 설정
+	AddGo(player, "player");  // 게임 오브젝트 목록에 추가
 	std::vector<float> lanePositions = { 100.0f, 300.0f, 500.0f, 700.0f };
 	std::vector<std::string> obstacleTextures = { "graphics/TurboObstacle_0.png", "graphics/TurboObstacle_1.png", "graphics/TurboObstacle_2.png", "graphics/TurboObstacle_3.png" };
 	obstaclePool = new ObstaclePool(obstacleTextures, lanePositions, 500.0f, 10);  // 10개의 장애물을 미리 생성
+
+	// 플레이어 초기화
+	player->Reset(); 
+
+	// timeBar 초기화
+	timeBar.SetTotalTime(5.0f); // 총 시간을 설정하는 예시
 
 	for (Obstacle* obstacle : obstaclePool->GetRandomObstacles(3))
 	{
@@ -43,6 +47,15 @@ void SceneDev2::Init()
 	scoreTextObj->SetTextSize(50); // 텍스트 크기 설정
 	scoreTextObj->SetString("Score: 0"); // 초기 점수 설정
 
+	GameObject* PauseTextObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"), "PauseText");
+	PauseTextObj->SetOrigin(Origins::MC);
+	PauseTextObj->SetPosition({ 900 / 2, 1000 / 2 }); // 점수 위치 설정
+	PauseTextObj->SetTextSize(50); // 텍스트 크기 설정
+	PauseTextObj->SetString("Press Enter to Start!!"); // 초기 점수 설정
+	PauseTextObj->SetActive(false); // 초기 상태에서 비활성화
+
+
+
 	Scene::Init();
 }
 
@@ -61,9 +74,9 @@ void SceneDev2::Enter()
 	if (!TEXTURE_MGR.Load("graphics/TurboObstacle_3.png")) {
 		std::cout << "Failed to load TurboObstacle_3.png" << std::endl;
 	}
-    if (!TEXTURE_MGR.Load("graphics/TurboPlayer.png")) {
-        std::cout << "Failed to load TurboObstacle_3.png" << std::endl;
-    }
+	if (!TEXTURE_MGR.Load("graphics/TurboPlayer.png")) {
+		std::cout << "Failed to load TurboPlayer.png" << std::endl;
+	}
 	TEXTURE_MGR.Load("graphics/TurboMap.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 
@@ -83,6 +96,31 @@ void SceneDev2::Exit()
 	Scene::Exit();
 }
 
+void SceneDev2::Reset()
+{
+	// 플레이어 초기화
+	player->Reset(); 
+
+	// 타이머 초기화
+	score = 0;
+	scoreTimer = 0.0f;
+
+	// timeBar 초기화
+	timeBar.Reset(); 
+
+	// 장애물 풀 초기화
+	obstaclePool->Reset(); 
+
+	// 장애물 비활성화
+	for (auto& obj : gameObjects)
+	{
+		if (obj->GetName() == "obstacle")
+		{
+			obj->SetActive(false);
+		}
+	}
+}
+
 void SceneDev2::Update(float dt)
 {
     if (isPause)
@@ -97,6 +135,7 @@ void SceneDev2::Update(float dt)
         if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
         {
             SCENE_MGR.ChangeScene(SceneIds::Dev1);  // 메인 메뉴로 돌아가기
+			Reset();
         }
 
         // 게임이 멈춘 상태에서는 더 이상 업데이트를 하지 않음
@@ -170,5 +209,14 @@ void SceneDev2::Draw(sf::RenderWindow& window)
 	if (scoreTextObj)
 	{
 		scoreTextObj->SetString("Score: " + std::to_string(score)); // 점수 업데이트
+	}
+	
+	if (isPause)
+	{
+		GameObject* pauseTextObj = dynamic_cast<TextGo*>(GetGameObject("PauseText"));
+		if (pauseTextObj)
+		{
+			pauseTextObj->Draw(window); // PauseText 그리기
+		}
 	}
 }

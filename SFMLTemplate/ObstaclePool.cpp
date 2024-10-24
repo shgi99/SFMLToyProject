@@ -72,6 +72,14 @@ void ObstaclePool::Draw(sf::RenderWindow& window)
     }
 }
 
+void ObstaclePool::Reset()
+{
+    for (auto obstacle : obstacles)
+    {
+        obstacle->SetActive(false); // 모든 장애물 비활성화
+    }
+}
+
 int ObstaclePool::GetRandomInt(int min, int max)
 {
     static std::random_device rd;

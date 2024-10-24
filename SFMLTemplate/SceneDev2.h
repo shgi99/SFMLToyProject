@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "timeBar.h"
 #include "ObstaclePool.h"
+
 class SceneDev2 : public Scene
 {
 protected:
@@ -22,6 +23,8 @@ public:
 	void Init() override;
 	void Enter() override;
 	void Exit() override;
+	// Reset 함수 선언
+	void Reset();
 
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
