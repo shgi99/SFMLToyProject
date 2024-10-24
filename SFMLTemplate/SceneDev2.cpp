@@ -149,25 +149,6 @@ void SceneDev2::Reset()
 
 void SceneDev2::Update(float dt)
 {
-<<<<<<< HEAD
-	if (isPause)
-	{
-		if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
-		{
-			isPause = false;
-		}
-
-		if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
-		{
-			SCENE_MGR.ChangeScene(SceneIds::Dev1);
-			Reset();
-		}
-
-		return;
-	}
-
-	Scene::Update(dt);
-=======
 	if (timeBar.IsGameOver())
 	{
 		isGameOver = true; // 게임 오버 상태로 설정
@@ -246,7 +227,6 @@ void SceneDev2::Update(float dt)
 	}
 
     Scene::Update(dt);
->>>>>>> origin/Dev.Park
 
 	scoreTimer += dt;
 
@@ -261,22 +241,6 @@ void SceneDev2::Update(float dt)
 	std::list<GameObject*> obstacleList;
 	int obstacleCount = FindGoAll("obstacle", obstacleList);
 
-<<<<<<< HEAD
-	// 장애물과 플레이어 충돌 여부 확인
-	for (GameObject* obj : obstacleList)
-	{
-		Obstacle* obstacle = dynamic_cast<Obstacle*>(obj);
-		if (obstacle && obstacle->IsActive())
-		{
-			sf::FloatRect obstacleBounds = obstacle->GetGlobalBound();
-			if (playerBounds.intersects(obstacleBounds))
-			{
-				isPause = true;
-				break;
-			}
-		}
-	}
-=======
      // 장애물과 플레이어 충돌 여부 확인
     for (GameObject* obj : obstacleList)
     {
@@ -292,7 +256,6 @@ void SceneDev2::Update(float dt)
             }
         }
     }
->>>>>>> origin/Dev.Park
 
 	// 장애물이 화면 밖으로 나가면 비활성화하고 차선 해제
 	for (GameObject* obj : obstacleList)
@@ -309,7 +272,6 @@ void SceneDev2::Update(float dt)
 		}
 	}
 
-<<<<<<< HEAD
 	// 장애물 생성
 	obstacleSpawnTimer += dt;
 	if (obstacleSpawnTimer > obstacleSpawnInterval)
@@ -379,17 +341,6 @@ void SceneDev2::Update(float dt)
 	timeBar.Update(dt);
 	obstaclePool->Update(dt);
 	fuelItem->Update(dt);
-=======
-    // 엔터 키를 누르면 일시정지
-    if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
-    {
-        isPause = true;
-    }
-
-    player->Update(dt);
-    timeBar.Update(dt);	
-    obstaclePool->Update(dt);
->>>>>>> origin/Dev.Park
 }
 
 
