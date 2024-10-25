@@ -4,7 +4,7 @@ class ResourceMgr : public Singleton<ResourceMgr<T>>
 {
 	friend Singleton<ResourceMgr<T>>;
 protected:
-	std::unordered_map<std::string, T*> resources; 
+	std::unordered_map<std::string, T*> resources;
 
 	ResourceMgr() = default;
 	~ResourceMgr() {
@@ -28,23 +28,25 @@ public:
 	{
 		if (resources.find(id) != resources.end())
 		{
-			return false;
+			std::cout << "Resource already loaded: " << id << std::endl;
+			return false;  // 이미 로드된 경우
 		}
 
 		T* resource = new T();
-		bool success = resource->loadFromFile(id); // loadFromFile()이 bool 값으로 반환함
+		bool success = resource->loadFromFile(id);  // 파일에서 로드
 
 		if (success)
 		{
-			// resources에 삽입
+			std::cout << "Successfully loaded resource: " << id << std::endl;
 			resources.insert({ id, resource });
 		}
 		else
 		{
+			std::cout << "Failed to load resource: " << id << std::endl;
 			delete resource;
 		}
 
-		return true;
+		return success;
 	}
 
 	bool Unload(const std::string& id)
@@ -65,6 +67,7 @@ public:
 		auto it = resources.find(id);
 		if (it == resources.end())
 		{
+			std::cout << "Resource not found: " << id << std::endl;
 			return Empty;
 		}
 		return *(it->second);

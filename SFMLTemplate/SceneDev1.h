@@ -2,7 +2,7 @@
 #include "Scene.h"
 class SceneDev1 : public Scene
 {
-protected:
+protected: 
 	
 public:
 	SceneDev1();

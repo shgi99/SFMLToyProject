@@ -17,7 +17,8 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow& window);
 
-	virtual GameObject* AddGo(GameObject* obj, const std::string& name); // 추가 매개 변수 받기위한 string name 추가
+	template<typename T>
+	inline T* AddGo(T* obj, const std::string& name);
 	virtual void RemoveGo(GameObject* obj);
 
 	virtual GameObject* FindGo(const std::string& name);
@@ -25,4 +26,13 @@ public:
 	// 추가: 이름으로 GameObject 찾기
 	virtual GameObject* GetGameObject(const std::string& name);
 };
-
+template<typename T>
+inline T* Scene::AddGo(T* obj, const std::string& name)
+{
+	obj->SetName(name);
+	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
+	{
+		gameObjects.push_back(obj);
+	}
+	return obj;
+}

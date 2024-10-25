@@ -18,6 +18,11 @@ void Framework::Do()
         deltaTime *= timeScale;
         realTime += realDeltaTime;
         time += deltaTime;
+        if (realTime > 5.f)
+        {
+            realTime = 0.f;
+            timeScale += 0.1f;
+        }
         // 이벤트 루프
         InputMgr::Clear();
         sf::Event event;

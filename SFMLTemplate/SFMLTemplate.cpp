@@ -2,7 +2,7 @@
 
 int main()
 {
-    FRAMEWORK.Init(900, 1000, "FrameWork Dev");
+    FRAMEWORK.Init(768, 1024, "Turbo Rush");
     FRAMEWORK.Do();
     FRAMEWORK.Release();
     return 0;

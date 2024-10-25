@@ -4,13 +4,24 @@
 SpriteGo::SpriteGo(const std::string& texId, const std::string& name) 
 	:GameObject(name), textureId(texId)
 {
+
 }
 
 void SpriteGo::Reset()
 {
-	sprite.setTexture(TEXTURE_MGR.Get(textureId));
-	SetOrigin(originPreset);
+    sf::Texture& texture = TEXTURE_MGR.Get(textureId);
+    if (texture.getSize().x == 0 || texture.getSize().y == 0)
+    {
+        return; // 유효하지 않은 텍스처인 경우 함수 종료
+    }
+
+    sprite.setTexture(texture);  // 텍스처 설정
+    SetOrigin(originPreset);
+
+    // 스프라이트 크기 확인
+    sf::FloatRect bounds = sprite.getGlobalBounds();
 }
+
 
 void SpriteGo::SetPosition(const sf::Vector2f& pos)
 {
@@ -18,10 +29,21 @@ void SpriteGo::SetPosition(const sf::Vector2f& pos)
 	sprite.setPosition(pos);
 }
 
+void SpriteGo::SetScale(const sf::Vector2f& Scale)
+{
+    GameObject::SetScale(Scale);
+    sprite.setScale(Scale);
+}
+
 void SpriteGo::Draw(sf::RenderWindow& window)
 {
-	GameObject::Draw(window);
-	window.draw(sprite);
+    if (sprite.getTexture() != nullptr) // 텍스처가 설정된 경우에만 그리기
+    {
+        window.draw(sprite);
+    }
+    else
+    {
+    }
 }
 
 void SpriteGo::SetOrigin(Origins preset)
@@ -35,4 +57,14 @@ void SpriteGo::SetOrigin(const sf::Vector2f& newOrigin)
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	sprite.setOrigin(origin);
+}
+
+float SpriteGo::getWidth() const
+{
+    return sprite.getGlobalBounds().width;
+}
+
+float SpriteGo::getHeight() const
+{
+    return sprite.getGlobalBounds().height;
 }

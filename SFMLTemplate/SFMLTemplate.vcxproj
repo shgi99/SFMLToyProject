@@ -145,8 +145,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Fuel.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputMgr.cpp" />
+    <ClCompile Include="LaneManager.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstaclePool.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
@@ -156,6 +160,7 @@
     <ClCompile Include="SpriteGo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TextGo.cpp" />
     <ClCompile Include="timeBar.cpp" />
@@ -164,8 +169,12 @@
   <ItemGroup>
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Fuel.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputMgr.h" />
+    <ClInclude Include="LaneManager.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstaclePool.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceMgr.h" />
     <ClInclude Include="Scene.h" />
