@@ -23,8 +23,8 @@ protected:
 	const float scoreInterval = 0.1f; // 점수 업데이트 간격 (초)
 	float fuelSpawnTimer = 0.0f; 
 	float obstacleSpawnTimer = 0.0f;
-	const float fuelSpawnInterval = 2.0f;  // 기름 아이템 재생성 간격
-	const float obstacleSpawnInterval = 1.5f;  // 장애물 재생성 간격
+	const float fuelSpawnInterval = 1.5f;  // 기름 아이템 재생성 간격
+	const float obstacleSpawnInterval = 2.f;  // 장애물 재생성 간격
 
 	SpriteGo* mapObject = nullptr;
 	int uvOffset;

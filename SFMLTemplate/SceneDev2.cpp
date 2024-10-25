@@ -18,7 +18,7 @@ void SceneDev2::Init()
 	std::cout << "SceneDev2::Init()" << std::endl;
 
 	player = new Player("graphics/TurboPlayer.png", "Player");
-	player->SetScale({ 1.2f, 1.2f });
+	player->SetScale({ 2.f, 2.f });
 	player->SetOrigin(Origins::BC);  // 중심을 원점으로 설정
 	player->SetPosition({ 768 / 2, 1024 / 2 });  // 초기 위치 설정
 	AddGo(player, "player");  // 게임 오브젝트 목록에 추가
@@ -183,6 +183,13 @@ void SceneDev2::Update(float dt)
             isPause = false;  // 게임 재개
         }
 
+		if (InputMgr::GetKeyDown(sf::Keyboard::Space))
+		{
+			Reset();  // 게임 상태 초기화
+			isGameOver = false;  // 게임 오버 해제
+			isPause = false;  // 일시정지 해제
+			return;
+		}
 		return;
 	
     }
@@ -268,7 +275,7 @@ void SceneDev2::Update(float dt)
 		if (obstacle && obstacle->IsActive())
 		{
 			sf::Vector2f pos = obstacle->GetPosition();
-			if (pos.y > 1000)
+			if (pos.y > 1100)
 			{
 				obstacle->SetActive(false);
 				laneManager->SetLaneUsed(pos.x, false);  // 차선 해제

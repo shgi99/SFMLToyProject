@@ -25,7 +25,7 @@ void Fuel::Update(float dt)
     SetPosition(pos);
 
     // 화면을 벗어나면 비활성화
-    if (pos.y > 950)
+    if (pos.y > 1100)
     {
         SetActive(false);
     }

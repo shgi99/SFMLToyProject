@@ -10,7 +10,6 @@ ObstaclePool::ObstaclePool(const std::vector<std::string>& textures, const std::
         Obstacle* obstacle = new Obstacle(textureIds[textureIndex], lanePositions, speed);
         obstacle->SetActive(false);  // 비활성화 상태로 시작
         obstacles.push_back(obstacle);  // 풀에 추가
-        std::cout << "Obstacle created and added to pool" << std::endl;
     }
 }
 

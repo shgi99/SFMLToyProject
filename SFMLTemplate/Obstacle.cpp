@@ -24,7 +24,7 @@ void Obstacle::Reset()
 	std::mt19937 g(rd());
 	std::shuffle(lanePositions.begin(), lanePositions.end(), g);
 	float randomX = lanePositions[0];
-	float randomY = -(rand() % 200 - 100);
+	float randomY = -(rand() % 400 + 100);
 	// 위치와 원점 설정
 
 	SetPosition(sf::Vector2f(randomX, randomY));

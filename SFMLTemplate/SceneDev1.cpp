@@ -17,10 +17,6 @@ void SceneDev1::Init()
 	obj->SetScale({ 0.45f,0.5f });
 
 
-	GameObject* textObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"),"Maincommend");
-	textObj->SetOrigin(Origins::TL);
-	textObj->SetPosition({ 0, 0 });
-	textObj->SetString("dev1");
 
 	//GameObject* StartTextObj = AddGo(new TextGo("fonts/KOMIKAP_.ttf"), "StartText");
 	//StartTextObj->SetOrigin(Origins::MC);
@@ -36,7 +32,6 @@ void SceneDev1::Enter()
 {
 	std::cout << "SceneDev1::Enter()" << std::endl;
 	TEXTURE_MGR.Load("graphics/TurboMain.png");
-	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 
 	Scene::Enter();
 }
@@ -45,7 +40,6 @@ void SceneDev1::Exit()
 {
 	std::cout << "SceneDev1::Exit()" << std::endl;
 	TEXTURE_MGR.Unload("graphics/TurboMain.png");
-	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 
 	Scene::Exit();
 }
